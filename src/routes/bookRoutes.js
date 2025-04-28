@@ -36,7 +36,7 @@ router.post("/", protectRoute, async (req, res) => {
 });
 
 //pagination => infinite loading
-router.get("/", protectRoute, async (rec, res) => {
+router.get("/", protectRoute, async (req, res) => {
   //example call from react native - frontend
   // const response = await fetchh({"http://localhost:3000/api/books?page=1&limit=5"})
   try {
@@ -84,7 +84,7 @@ router.delete("/:id", protectRoute, async (req, res) => {
 
     //check if user is the creator of the book
     if (book.user.toString() !== req.user._id.toString())
-      return req.status(401).json({ message: "Unauthorized" });
+      return res.status(401).json({ message: "Unauthorized" });
 
     //httpres.cloudinary
 
